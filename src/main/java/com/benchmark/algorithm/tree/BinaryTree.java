@@ -124,4 +124,28 @@ public class BinaryTree {
 		backErgodic(stringBuilder, node.getRight());
 		stringBuilder.append(" ").append(node.getData());
 	}
+
+	public Node find(int value){
+		if(null == this.root){
+			return null;
+		}
+		Node result = null;
+		Node index = this.root;
+
+		for(; index != null; ){
+			Node parent = index;
+			/// turn left
+			if(parent.getData() > value){
+				index = parent.getLeft();
+			}
+			// turn right
+			else if(parent.getData() < value){
+				index = parent.getRight();
+			}else{
+				result = parent;
+				break;
+			}
+		}
+		return result;
+	}
 }

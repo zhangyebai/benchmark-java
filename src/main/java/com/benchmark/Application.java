@@ -14,5 +14,8 @@ public class Application {
 		System.out.println(binaryTree.pre());
 		System.out.println(binaryTree.mid());
 		System.out.println(binaryTree.back());
+		System.out.println(binaryTree.getSize());
+		System.out.println(binaryTree.find(33));
+		System.out.println(binaryTree.find(21));
 	}
 }
