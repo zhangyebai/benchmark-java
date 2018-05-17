@@ -8,14 +8,27 @@ public class Application {
 		binaryTree.insert(5);
 		binaryTree.insert(10);
 		binaryTree.insert(2);
-		binaryTree.insert(1);
+		binaryTree.insert(31);
 		binaryTree.insert(21);
 		binaryTree.insert(9);
-		System.out.println(binaryTree.pre());
+		binaryTree.insert(20);
+		binaryTree.insert(1);
+		System.out.println(binaryTree.getSize());
+		binaryTree.delete(21);
+		System.out.println(binaryTree.getSize());
+		System.out.println(binaryTree.mid());
+
+		binaryTree.delete(5);
+		System.out.println(binaryTree.getSize());
+		System.out.println(binaryTree.mid());
+
+		/**System.out.println(binaryTree.pre());
 		System.out.println(binaryTree.mid());
 		System.out.println(binaryTree.back());
 		System.out.println(binaryTree.getSize());
 		System.out.println(binaryTree.find(33));
 		System.out.println(binaryTree.find(21));
+		binaryTree.delete(7);
+		System.out.println(binaryTree.back());*/
 	}
 }

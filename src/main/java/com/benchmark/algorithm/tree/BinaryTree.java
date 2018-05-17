@@ -165,20 +165,20 @@ public class BinaryTree {
 			return result;
 		}
 		Node index = this.root;
-		Node parrent = null;
+		Node parent = null;
 		boolean isLeftNode = false;
 
 		for(; index != null;){
 
 			//turn left
 			 if(index.getData() > value){
-				parrent = index;
+				 parent = index;
 				index = index.getLeft();
 				 isLeftNode = true;
 			}
 			//turn right
 			else if(index.getData() < value){
-			 	parrent = index;
+				 parent = index;
 			 	index = index.getRight();
 				 isLeftNode = false;
 			 }
@@ -191,22 +191,100 @@ public class BinaryTree {
 			return false;
 		}
 
+		// 叶节点
 		if(null == index.getLeft() && null == index.getRight()){
 			if(index == this.root){
 				this.root = null;
+				--size;
 				return true;
 			}
-		}
+			if(isLeftNode){
+				parent.setLeft(null);
+				--size;
+				return true;
+			}else{
+				parent.setRight(null);
+				--size;
+				return true;
+			}
+		}else if (null == index.getLeft()){
+			if(index == this.root){
+				this.root = this.root.getRight();
+				--size;
+				return true;
+			}
 
-		return result;
+			if (isLeftNode){
+				parent.setLeft(index.getRight());
+				--size;
+				return true;
+			}else{
+				parent.setRight(index.getRight());
+				--size;
+				return true;
+			}
+		}else if (null == index.getRight()){
+			if(index == this.root){
+				this.root = index.getLeft();
+				--size;
+				return true;
+			}
+
+			if(isLeftNode){
+				parent.setLeft(index.getLeft());
+				--size;
+				return true;
+			}else{
+				parent.setRight(index.getLeft());
+				--size;
+				return true;
+			}
+		}else{
+			Node master =  this.voteRoot(index);
+			if(index == this.root){
+				this.root = master;
+				master.setLeft(index.getLeft());
+				master.setRight(index.getRight());
+				--size;
+				return true;
+			}
+
+			if(isLeftNode){
+				parent.setLeft(master);
+			}else{
+				parent.setRight(master);
+			}
+
+			master.setLeft(index.getLeft());
+			master.setRight(index.getRight());
+			--size;
+			return true;
+		}
 	}
 
 
 	/**
 	 * orphan 孤儿
+	 * 投票给孤儿的最右节点就行了
 	 * */
 	public Node voteRoot(Node orphan){
-		return null;
+		Node index  = orphan.getRight();
+		Node master = index;
+		Node parent = null;
+
+		for(; null != index && null != index.getLeft() ; ){
+			master = index.getLeft();
+			parent = index;
+			index = index.getLeft();
+		}
+		if(null == parent && index == master){
+			// it means orphan node's right node is a single node
+			// orphan node's right node is master and root node, do nothing
+		}else{
+			parent.setLeft(null);
+		}
+		/// master.setRight(orphan.getRight());
+		return master;
 	}
 
 }
