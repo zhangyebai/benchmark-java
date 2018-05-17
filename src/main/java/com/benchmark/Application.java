@@ -9,7 +9,10 @@ public class Application {
 		binaryTree.insert(10);
 		binaryTree.insert(2);
 		binaryTree.insert(1);
-		binaryTree.insert(2);
-		System.out.println(binaryTree.getSize());
+		binaryTree.insert(21);
+		binaryTree.insert(9);
+		System.out.println(binaryTree.pre());
+		System.out.println(binaryTree.mid());
+		System.out.println(binaryTree.back());
 	}
 }
