@@ -40,7 +40,7 @@ public class BinaryTree {
 			if(parent.getData() > value){
 				index = parent.getLeft();
 				if (null == index){
-					parent.left = new Node().setData(value);
+					parent.left = node;
 					size++;
 					break;
 				}
@@ -49,7 +49,7 @@ public class BinaryTree {
 			else if (parent.getData() < value){
 				index = parent.getRight();
 				if(null == index){
-					parent.setRight(new Node().setData(value));
+					parent.setRight(node);
 					size ++;
 					break;
 				}
@@ -265,7 +265,8 @@ public class BinaryTree {
 
 	/**
 	 * orphan 孤儿
-	 * 投票给孤儿的最右节点就行了
+	 * 投票给孤儿的右节点的最左节点就行了, 因为二叉树的特点:root左边的节点里,上层比下层大, 右边比左边大;
+	 * 											   root右边的节点里,下层比上层大, 右边比左边大;
 	 * */
 	public Node voteRoot(Node orphan){
 		Node index  = orphan.getRight();
