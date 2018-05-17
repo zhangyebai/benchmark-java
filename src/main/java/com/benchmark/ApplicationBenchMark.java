@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Hello world!
  *
  */
-public class App 
+public class ApplicationBenchMark
 {
     @Benchmark
     @BenchmarkMode(Mode.SingleShotTime)
@@ -32,7 +32,7 @@ public class App
     public static void main(String[] args ) {
         System.out.println( "Hello BenchMark!" );
         Options opts = new OptionsBuilder()
-                .include(App.class.getSimpleName())
+                .include(ApplicationBenchMark.class.getSimpleName())
                 .warmupIterations(2)
                 .threads(2)
                 //.forks(1)
